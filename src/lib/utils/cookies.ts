@@ -16,7 +16,7 @@ const secure = process.env.NODE_ENV !== 'development';
 
 const defaults: CookieOptions = {
   httpOnly: true,
-  sameSite: 'strict',
+  sameSite: 'none',
   secure,
 };
 
