@@ -4,8 +4,9 @@ const rootRoutes = Router();
 
 rootRoutes.get('/', (req, res) => {
   const availableRoutes = [
-    // Auth routes
+    // Health route
     { method: 'GET', path: '/health' },
+    // Auth routes
     { method: 'POST', path: '/auth/register' },
     { method: 'POST', path: '/auth/login' },
     { method: 'GET', path: '/auth/refresh' },
@@ -19,9 +20,9 @@ rootRoutes.get('/', (req, res) => {
     { method: 'DELETE', path: '/auth/verification' },
     { method: 'DELETE', path: '/auth/destroy' },
     // User routes
-    { method: 'GET', path: '/user/' },
+    { method: 'GET', path: '/user' },
     // Session routes
-    { method: 'GET', path: '/sessions/' },
+    { method: 'GET', path: '/sessions' },
     { method: 'DELETE', path: '/sessions/:sessionId' },
     // Netlify redirect
     {
