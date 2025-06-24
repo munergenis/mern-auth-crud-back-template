@@ -5,6 +5,7 @@ import {
   REFRESH_TOKEN_DURATION_DAYS,
 } from '../../config/appGlobalConfig.js';
 import { daysFromNow, minutesFromNow } from './date.js';
+import { NODE_ENV } from '../constants/env.js';
 
 export const REFRESH_PATH = '/auth/refresh';
 const enum TOKEN_KEYS {
@@ -13,10 +14,11 @@ const enum TOKEN_KEYS {
 }
 
 const secure = process.env.NODE_ENV !== 'development';
+const sameSite = NODE_ENV !== 'development' ? 'none' : 'lax';
 
 const defaults: CookieOptions = {
   httpOnly: true,
-  sameSite: 'none',
+  sameSite,
   secure,
 };
 
@@ -55,12 +57,12 @@ export const clearAuthCookies = (res: Response) => {
   return res
     .clearCookie(TOKEN_KEYS.ACCESS_TOKEN_KEY, {
       httpOnly: true,
-      sameSite: 'none',
+      sameSite,
       secure,
     })
     .clearCookie(TOKEN_KEYS.REFRESH_TOKEN_KEY, {
       httpOnly: true,
-      sameSite: 'none',
+      sameSite,
       secure,
       path: REFRESH_PATH,
     });
