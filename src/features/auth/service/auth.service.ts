@@ -258,14 +258,14 @@ export const sendPasswordResetEmail = async (email: string) => {
     to: user.email,
   });
   appAssert(
-    data?.id,
+    data?.messageId,
     INTERNAL_SERVER_ERROR,
     `${error?.name} - ${error?.message}`
   );
 
   // return success
   return {
-    emailId: data.id,
+    emailId: data.messageId,
     url,
   };
 };
