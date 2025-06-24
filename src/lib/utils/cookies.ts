@@ -51,9 +51,19 @@ export const setAuthCookies = ({ accessToken, refreshToken, res }: Params) => {
 };
 
 export const clearAuthCookies = (res: Response) => {
+  // Debe coincidir con los mismos atributos usados al setear las cookies
   return res
-    .clearCookie(TOKEN_KEYS.ACCESS_TOKEN_KEY)
-    .clearCookie(TOKEN_KEYS.REFRESH_TOKEN_KEY, { path: REFRESH_PATH });
+    .clearCookie(TOKEN_KEYS.ACCESS_TOKEN_KEY, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure,
+    })
+    .clearCookie(TOKEN_KEYS.REFRESH_TOKEN_KEY, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure,
+      path: REFRESH_PATH,
+    });
 };
 
 export const setRefreshCookie = ({
