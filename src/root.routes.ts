@@ -5,6 +5,7 @@ const rootRoutes = Router();
 rootRoutes.get('/', (req, res) => {
   const availableRoutes = [
     // Auth routes
+    { method: 'GET', path: '/health' },
     { method: 'POST', path: '/auth/register' },
     { method: 'POST', path: '/auth/login' },
     { method: 'GET', path: '/auth/refresh' },
