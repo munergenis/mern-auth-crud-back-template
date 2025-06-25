@@ -15,21 +15,6 @@ interface Params {
   to: string;
 }
 
-// const getFromEmail = () =>
-//   NODE_ENV === 'development' ? 'onboarding@resend.dev' : EMAIL_SENDER;
-// const getToEmail = (to: string) =>
-//   NODE_ENV === 'development' ? 'delivered@resend.dev' : to;
-
-// export const sendMail = async ({ html, subject, text, to }: Params) => {
-//   return await resend.emails.send({
-//     from: getFromEmail(),
-//     html,
-//     subject,
-//     text,
-//     to: getToEmail(to),
-//   });
-// };
-
 const transporter = nodemailer.createTransport({
   host: BREVO_SMTP_HOST,
   port: Number(BREVO_SMTP_PORT),
